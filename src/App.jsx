@@ -1,5 +1,5 @@
 import './App.css';
-import faceapi from "face-api.js";
+import * as faceapi from "face-api.js";
 import {useEffect, useRef} from "react";
 
 function App() {
@@ -8,11 +8,15 @@ function App() {
   useEffect(()=>{
     const loadModels =()=>{
       Promise.all([
-        
+        faceapi.nets.faceExpression.Nets.loadFromuri("/models"),
+        faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+        faceapi.nets.faceRecognition.Nets.loadFromuri("/models"),  
+        faceapi.nets.faceLandmark68.Nets.loadFromuri("/models"),     
       ])
-    }
+      .then(console.log("its done")).catch((e)=> console.log(e));
+    };
     
-  },[])
+  },[]);
   return (
     <div className="App">
      
