@@ -15,7 +15,7 @@ function App() {
       ])
       .then(console.log("its done")).catch((e)=> console.log(e));
     };
-    
+    imgRef.current && loadModels();
   },[]);
   return (
     <div className="App">
